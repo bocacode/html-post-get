@@ -1,3 +1,5 @@
+
+
 const clothesContainer = document.getElementById('clothes')
 
 function getClothes() {
@@ -44,6 +46,16 @@ function addClothes(event) {
     price: document.getElementById('price').value,
     sku: document.getElementById('sku').value,
   }
+
+  var form = document.getElementsByClassName('needs-validation')[0];
+
+  if(form.checkValidity() === false){
+    event.stopPropagation();
+    form.classList.add('was-validated');
+    return
+  }
+
+
   fetch('https://bc-clothes.web.app/products', {
     method: 'POST',
     headers: {
@@ -57,3 +69,13 @@ function addClothes(event) {
     })
     .catch(err => alert(err.message))
 }
+
+const email = document.getElementById("email");
+
+email.addEventListener("input", function (event) {
+  if (email.validity.typeMismatch) {
+    email.setCustomValidity("I am expecting an e-mail address!");
+  } else {
+    email.setCustomValidity("");
+  }
+});

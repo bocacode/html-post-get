@@ -19,14 +19,18 @@
   <hr />
   <section class="container">
     <h2>Add Clothes</h2>
-    <form onsubmit="addClothes(event)">
+    <form onsubmit="addClothes(event)" class="needs-validation" novalidate>
       <div class="mb-3">
         <label for="brand" class="form-label">Brand</label>
         <input type="text" class="form-control" id="brand">
       </div>
       <div class="mb-3">
         <label for="color" class="form-label">Color</label>
-        <input type="text" class="form-control" id="color">
+        <input type="text" placeholder=" Purple, Orange, or Red"
+        class="form-control" id="color" pattern="[Rr]ed|[Oo]range|[Pp]urple">
+        <div class="invalid-feedback">
+            The color can only be one of red, orange, or purple
+        </div>
       </div>
       <div class="mb-3">
         <label for="style" class="form-label">Style</label>
@@ -34,15 +38,18 @@
       </div>
       <div class="mb-3">
         <label for="type" class="form-label">Type</label>
-        <input type="text" class="form-control" id="type">
+        <input type="text" class="form-control" id="type" minlength="3" maxlength="40" required>
       </div>
       <div class="mb-3">
         <label for="price" class="form-label">Price</label>
-        <input type="number" step=".01" class="form-control" id="price">
+        <input type="number" step=".01" class="form-control" id="price" min="9.99" required>
+        <div class="invalid-feedback">
+        The price is not right
+        </div>
       </div>
       <div class="mb-3">
         <label for="sku" class="form-label">SKU</label>
-        <input type="text" class="form-control" id="sku">
+        <input type="text" class="form-control" id="sku" minlength="6" maxlength="6" required>
       </div>
       <button type="submit" class="btn btn-primary">Add Item</button>
     </form>
